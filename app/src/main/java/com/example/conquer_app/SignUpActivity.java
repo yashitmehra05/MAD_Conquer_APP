@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -21,14 +20,14 @@ public class SignUpActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         cardBrand.setOnClickListener(v -> {
-            Toast.makeText(this, "Signed up as Brand", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, RegisterActivity.class);
+            intent.putExtra("account_type", "Brand");
             startActivity(intent);
         });
 
         cardInfluencer.setOnClickListener(v -> {
-            Toast.makeText(this, "Signed up as Influencer", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, RegisterActivity.class);
+            intent.putExtra("account_type", "Influencer");
             startActivity(intent);
         });
     }
