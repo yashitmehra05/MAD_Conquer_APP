@@ -11,8 +11,23 @@ public class Influencer {
         this.followers = followers;
     }
 
-    public String getName() { return name; }
-    public String getHandle() { return handle; }
-    public String getLocation() { return location; }
-    public String getCategory() { return category; }
-    public String getFollowers() { return followers; }
+    public String getName() {
+        return name;
+    }
+
+    public String getHandle() {
+        return handle;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getFollowers() {
+        return followers;
+    }
+}
