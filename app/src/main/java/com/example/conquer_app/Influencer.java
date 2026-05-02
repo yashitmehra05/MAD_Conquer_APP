@@ -16,4 +16,3 @@ public class Influencer {
     public String getLocation() { return location; }
     public String getCategory() { return category; }
     public String getFollowers() { return followers; }
-}
