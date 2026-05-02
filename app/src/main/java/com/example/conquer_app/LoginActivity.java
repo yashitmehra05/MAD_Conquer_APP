@@ -1,5 +1,5 @@
 package com.example.conquer_app;
-
+import com.example.conquer_app.SignUpActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
