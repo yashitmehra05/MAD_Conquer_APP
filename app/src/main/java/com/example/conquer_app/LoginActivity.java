@@ -1,4 +1,4 @@
-package com.conquer.app;
+package com.example.conquer_app;
 
 import android.content.Intent;
 import android.os.Bundle;
