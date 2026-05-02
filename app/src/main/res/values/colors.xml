@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="bg_dark">#12131A</color>
+    <color name="bg_card">#1E1F2B</color>
+    <color name="bg_input">#1A1B26</color>
+    <color name="purple_primary">#7C3AED</color>
+    <color name="purple_light">#9D6FFF</color>
+    <color name="purple_gradient_start">#7C3AED</color>
+    <color name="purple_gradient_end">#EC4899</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_grey">#8A8D9F</color>
+    <color name="text_hint">#555770</color>
+    <color name="stroke_grey">#2A2B3D</color>
+    <color name="green_active">#22C55E</color>
+    <color name="white">#FFFFFF</color>
 </resources>
