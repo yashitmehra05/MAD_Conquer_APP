@@ -24,6 +24,9 @@
         <activity android:name=".LoginActivity" android:exported="false"/>
         <activity android:name=".SignUpActivity" android:exported="false"/>
         <activity android:name=".HomeActivity" android:exported="false"/>
+        <activity
+            android:name=".DiscoverActivity"
+            android:theme="@style/Theme.Conquer" />
 
     </application>
 </manifest>
