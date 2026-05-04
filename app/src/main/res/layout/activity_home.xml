@@ -14,7 +14,6 @@
         android:clipToPadding="false"
         android:paddingBottom="80dp"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -368,16 +367,15 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ── BOTTOM NAVIGATION ── -->
+    <!-- ── BOTTOM NAVIGATION (FIXED) ── -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="bottom"
         android:background="@color/bg_card"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:itemActiveIndicatorColor="@android:color/transparent"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"/>
 
