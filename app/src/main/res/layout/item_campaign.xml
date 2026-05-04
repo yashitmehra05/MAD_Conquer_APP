@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <!-- Campaign name -->
+    <TextView
+        android:id="@+id/tvCampaignName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summer Collection 2026"
+        android:textColor="@color/text_white"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <!-- Stats row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <!-- Influencer count -->
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_person"
+            android:tint="@color/text_grey"/>
+
+        <TextView
+            android:id="@+id/tvInfluencerCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 influencers"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            android:layout_marginStart="4dp"/>
+
+        <!-- Bullet spacer -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  ·  "
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"/>
+
+        <!-- Budget -->
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_currency_rupee"
+            android:tint="@color/text_grey"/>
+
+        <TextView
+            android:id="@+id/tvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹50,000"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Time ago -->
+    <TextView
+        android:id="@+id/tvTimeAgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 days ago"
+        android:textColor="@color/text_grey"
+        android:textSize="11sp"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

@@ -145,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 // Already here
-                return true;
+                return true;::
             } else if (id == R.id.nav_discover) {
                 startActivity(new Intent(this, DiscoverActivity.class));
                 overridePendingTransition(0, 0);
