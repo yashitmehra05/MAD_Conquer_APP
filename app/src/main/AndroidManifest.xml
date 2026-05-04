@@ -11,13 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Conquer">
-        <activity android:name=".RegisterActivity" android:exported="false"/>
-        <activity
-            android:name=".MessagesActivity" />
-        <activity
-            android:name=".HomeActivity"
-            android:theme="@style/Theme.Conquer"
-            android:exported="false"/>
+
         <activity android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -27,11 +21,22 @@
         </activity>
 
         <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".RegisterActivity" android:exported="false"/>
         <activity android:name=".SignUpActivity" android:exported="false"/>
-        <activity android:name=".HomeActivity" android:exported="false"/>
+
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"/>
         <activity
             android:name=".DiscoverActivity"
-            android:theme="@style/Theme.Conquer" />
+            android:exported="false"/>
+        <activity
+            android:name=".MessagesActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ProfileActivity" android:exported="false" />
+        <activity android:name=".NewCampaignActivity" android:exported="false" />
+        <activity android:name=".CampaignDetailsActivity" android:exported="false" />
 
     </application>
 </manifest>
