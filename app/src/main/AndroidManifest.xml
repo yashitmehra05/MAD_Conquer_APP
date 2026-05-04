@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Conquer">
         <activity android:name=".RegisterActivity" android:exported="false"/>
+        <activity
+            android:name=".MessagesActivity" />
 
         <activity android:name=".SplashActivity"
             android:exported="true">
