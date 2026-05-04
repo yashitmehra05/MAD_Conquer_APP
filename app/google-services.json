@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "571918765054",
+    "firebase_url": "https://conquer-b3fdd-default-rtdb.firebaseio.com",
+    "project_id": "conquer-b3fdd",
+    "storage_bucket": "conquer-b3fdd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571918765054:android:dc98f98c47af919f648eaf",
+        "android_client_info": {
+          "package_name": "com.example.conquer_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571918765054-rug6mcdq66eqv9olmcv8j52g49gs3g8u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.conquer_app",
+            "certificate_hash": "95527d13ffbcac1ea9ad1bcf4cff0111a691a330"
+          }
+        },
+        {
+          "client_id": "571918765054-l9cgj6dsblk1ecddqnb5h0bsdmee8ilf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrbGsqeskf-uDENBQmgR3c8hV-lGxNmig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571918765054-l9cgj6dsblk1ecddqnb5h0bsdmee8ilf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

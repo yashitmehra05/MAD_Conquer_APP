@@ -137,6 +137,17 @@
                 android:background="@color/stroke_grey" />
         </LinearLayout>
 
+        <!-- ✅ Google Button added here -->
+        <Button
+            android:id="@+id/googleBtn"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:text="Continue with Google"
+            android:textColor="@color/text_white"
+            android:textSize="15sp"
+            android:background="@drawable/bg_card" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.conquer_app" />
+                  <option name="mobileSdkAppId" value="1:571918765054:android:dc98f98c47af919f648eaf" />
+                  <option name="projectId" value="conquer-b3fdd" />
+                  <option name="projectNumber" value="571918765054" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
