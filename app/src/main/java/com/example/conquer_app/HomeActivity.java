@@ -17,7 +17,6 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    // ── Inner model ─────────────────────────────────────────────
     static class Campaign {
         String name;
         int influencerCount;
@@ -32,7 +31,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    // ── Views ───────────────────────────────────────────────────
     private TextView tvUserName, tvCampaigns, tvInfluencers, tvRoi, tvViewAll;
     private LinearLayout actionFindInfluencers, actionNewCampaign, actionMessages, actionAnalytics;
     private LinearLayout campaignContainer;
@@ -50,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
         setupBottomNav();
     }
 
-    // ── Bind Views ──────────────────────────────────────────────
     private void bindViews() {
         tvUserName = findViewById(R.id.tvUserName);
         tvCampaigns = findViewById(R.id.tvCampaigns);
@@ -66,7 +63,6 @@ public class HomeActivity extends AppCompatActivity {
         campaignContainer = findViewById(R.id.campaignContainer);
     }
 
-    // ── Stats ───────────────────────────────────────────────────
     private void setupStats() {
         tvUserName.setText("Kartik Sharma");
         tvCampaigns.setText("2");
@@ -74,32 +70,28 @@ public class HomeActivity extends AppCompatActivity {
         tvRoi.setText("3.2x");
     }
 
-    // ── Quick Actions ───────────────────────────────────────────
     private void setupQuickActions() {
+        actionFindInfluencers.setOnClickListener(v ->
+                startActivity(new Intent(this, DiscoverActivity.class))
+        );
 
-        actionFindInfluencers.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, DiscoverActivity.class));
-        });
+        actionNewCampaign.setOnClickListener(v ->
+                startActivity(new Intent(this, NewCampaignActivity.class))
+        );
 
-        // ✅ NEW CAMPAIGN COMMAND (as required)
-        actionNewCampaign.setOnClickListener(v -> {
-            startActivity(new Intent(this, com.example.conquer_app.NewCampaignActivity.class));
-        });
-
-        actionMessages.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, MessagesActivity.class));
-        });
+        actionMessages.setOnClickListener(v ->
+                startActivity(new Intent(this, MessagesActivity.class))
+        );
 
         actionAnalytics.setOnClickListener(v ->
                 Toast.makeText(this, "Analytics coming soon!", Toast.LENGTH_SHORT).show()
         );
 
         tvViewAll.setOnClickListener(v ->
-                Toast.makeText(this, "View all campaigns", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(this, DiscoverActivity.class))
         );
     }
 
-    // ── Campaigns ───────────────────────────────────────────────
     private void setupCampaigns() {
         List<Campaign> campaigns = new ArrayList<>();
         campaigns.add(new Campaign("Summer Collection 2026", 5, "₹50,000", "2 days ago"));
@@ -110,21 +102,17 @@ public class HomeActivity extends AppCompatActivity {
                     .inflate(R.layout.item_campaign, campaignContainer, false);
 
             ((TextView) card.findViewById(R.id.tvCampaignName)).setText(c.name);
-            ((TextView) card.findViewById(R.id.tvInfluencerCount))
-                    .setText(c.influencerCount + " influencers");
+            ((TextView) card.findViewById(R.id.tvInfluencerCount)).setText(c.influencerCount + " influencers");
             ((TextView) card.findViewById(R.id.tvBudget)).setText(c.budget);
             ((TextView) card.findViewById(R.id.tvTimeAgo)).setText(c.timeAgo);
 
-            // ✅ CAMPAIGN CLICK WITH FULL DATA
             card.setOnClickListener(v -> {
-                Intent intent = new Intent(this, com.example.conquer_app.CampaignDetailsActivity.class);
-
+                Intent intent = new Intent(this, CampaignDetailsActivity.class);
                 intent.putExtra("campaign_title", c.name);
                 intent.putExtra("campaign_budget", c.budget);
                 intent.putExtra("campaign_duration", "Jan 15 - Feb 28, 2026");
                 intent.putExtra("campaign_description", "Promote our new summer collection...");
                 intent.putExtra("campaign_influencers", String.valueOf(c.influencerCount));
-
                 startActivity(intent);
             });
 
@@ -132,7 +120,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    // ── Bottom Navigation ───────────────────────────────────────
     private void setupBottomNav() {
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_home);
@@ -142,20 +129,14 @@ public class HomeActivity extends AppCompatActivity {
 
             if (id == R.id.nav_home) {
                 return true;
-
             } else if (id == R.id.nav_discover) {
                 startActivity(new Intent(this, DiscoverActivity.class));
-                overridePendingTransition(0, 0);
                 return true;
-
             } else if (id == R.id.nav_messages) {
                 startActivity(new Intent(this, MessagesActivity.class));
-                overridePendingTransition(0, 0);
                 return true;
-
-                // ✅ PROFILE COMMAND (as required)
             } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, com.example.conquer_app.ProfileActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 overridePendingTransition(0, 0);
                 return true;
             }

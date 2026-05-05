@@ -17,105 +17,61 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Account Type"
+        android:text="Create Account"
         android:textColor="@color/text_white"
-        android:textSize="20sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginTop="-30dp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp" />
 
-    <TextView
+    <EditText
+        android:id="@+id/nameInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="I am a..."
+        android:layout_height="56dp"
+        android:hint="Full Name"
+        android:textColorHint="@color/text_grey"
         android:textColor="@color/text_white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="40dp" />
-
-    <!-- Brand Card -->
-    <LinearLayout
-        android:id="@+id/cardBrand"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:orientation="horizontal"
         android:background="@drawable/bg_card"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_brand"
-            android:background="@drawable/ic_circle_purple"
-            android:padding="8dp"
-            android:contentDescription="Brand icon" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Brand"
-                android:textColor="@color/text_white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I want to find influencers for my campaigns"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Influencer Card -->
-    <LinearLayout
-        android:id="@+id/cardInfluencer"
+    <EditText
+        android:id="@+id/emailInput"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:orientation="horizontal"
+        android:layout_height="56dp"
+        android:hint="Email"
+        android:textColorHint="@color/text_grey"
+        android:textColor="@color/text_white"
         android:background="@drawable/bg_card"
-        android:gravity="center_vertical"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_influencer"
-            android:background="@drawable/ic_circle_purple"
-            android:padding="8dp"
-            android:contentDescription="Influencer icon" />
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Password"
+        android:textColorHint="@color/text_grey"
+        android:textColor="@color/text_white"
+        android:background="@drawable/bg_card"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:inputType="textPassword"
+        android:layout_marginBottom="24dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Influencer"
-                android:textColor="@color/text_white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I want to collaborate with brands"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
+    <Button
+        android:id="@+id/createAccountBtn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Create Account"
+        android:textColor="@color/text_white"
+        android:backgroundTint="@color/purple_primary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
