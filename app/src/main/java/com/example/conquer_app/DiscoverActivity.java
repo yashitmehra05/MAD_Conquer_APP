@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-
+import android.widget.Toast;
 public class DiscoverActivity extends AppCompatActivity {
 
     private InfluencerAdapter adapter;
@@ -20,6 +20,7 @@ public class DiscoverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
+        Toast.makeText(this, "Discover loaded", Toast.LENGTH_SHORT).show();
 
         tvResultsCount = findViewById(R.id.tv_results_count);
         EditText etSearch = findViewById(R.id.et_search);
@@ -29,6 +30,7 @@ public class DiscoverActivity extends AppCompatActivity {
         adapter = new InfluencerAdapter(influencerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.setBackgroundColor(getResources().getColor(R.color.bg_dark));
         updateCount(influencerList.size());
 
         etSearch.addTextChangedListener(new TextWatcher() {

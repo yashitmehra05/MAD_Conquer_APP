@@ -119,30 +119,23 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupBottomNav() {
         bottomNav = findViewById(R.id.bottomNav);
-
         bottomNav.setSelectedItemId(R.id.nav_home);
-
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-
             if (id == R.id.nav_home) return true;
-
             if (id == R.id.nav_discover) {
+                Toast.makeText(this, "Discover tapped", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DiscoverActivity.class));
                 return true;
             }
-
             if (id == R.id.nav_messages) {
                 startActivity(new Intent(this, MessagesActivity.class));
                 return true;
             }
-
             if (id == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             }
-
             return false;
         });
-    }
-}
+    }}
