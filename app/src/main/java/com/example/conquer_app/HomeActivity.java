@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // ✅ NEW CAMPAIGN COMMAND (as required)
         actionNewCampaign.setOnClickListener(v -> {
-            startActivity(new Intent(this, com.conquer.app.NewCampaignActivity.class));
+            startActivity(new Intent(this, com.example.conquer_app.NewCampaignActivity.class));
         });
 
         actionMessages.setOnClickListener(v -> {
@@ -155,7 +155,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 // ✅ PROFILE COMMAND (as required)
             } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, com.conquer.app.ProfileActivity.class));
+                startActivity(new Intent(this, com.example.conquer_app.ProfileActivity.class));
                 overridePendingTransition(0, 0);
                 return true;
             }
