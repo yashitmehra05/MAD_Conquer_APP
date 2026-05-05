@@ -117,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
             // ✅ CAMPAIGN CLICK WITH FULL DATA
             card.setOnClickListener(v -> {
-                Intent intent = new Intent(this, com.conquer.app.CampaignDetailsActivity.class);
+                Intent intent = new Intent(this, com.example.conquer_app.CampaignDetailsActivity.class);
 
                 intent.putExtra("campaign_title", c.name);
                 intent.putExtra("campaign_budget", c.budget);

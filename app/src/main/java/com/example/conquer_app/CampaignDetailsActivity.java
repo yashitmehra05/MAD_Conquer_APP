@@ -1,4 +1,4 @@
-package com.conquer.app;
+package com.example.conquer_app;
 
 import android.os.Bundle;
 import android.view.Gravity;

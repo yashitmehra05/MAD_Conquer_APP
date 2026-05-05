@@ -5,28 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Conquer"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Conquer">
-        <activity
-            android:name=".ProfileActivity"
-            android:theme="@style/Theme.Conquer" />
 
         <activity
-            android:name=".NewCampaignActivity"
-            android:theme="@style/Theme.Conquer"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".CampaignDetailsActivity"
-            android:theme="@style/Theme.Conquer" />
-
-        <activity android:name=".SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,21 +25,25 @@
         <activity android:name=".RegisterActivity" android:exported="false"/>
         <activity android:name=".SignUpActivity" android:exported="false"/>
 
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".DiscoverActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".MessagesActivity"
-            android:exported="false"/>
+        <activity android:name=".HomeActivity" android:exported="false"/>
+        <activity android:name=".DiscoverActivity" android:exported="false"/>
+        <activity android:name=".MessagesActivity" android:exported="false"/>
 
-        <activity android:name=".ProfileActivity" android:exported="false" />
-        <activity android:name=".NewCampaignActivity" android:exported="false" />
-        <activity android:name=".CampaignDetailsActivity" android:exported="false" />
+        <!-- Part 5 Activities -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
+        <activity
+            android:name=".NewCampaignActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".CampaignDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
 
     </application>
-
 
 </manifest>
