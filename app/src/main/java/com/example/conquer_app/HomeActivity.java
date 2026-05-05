@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         setupStats();
         setupQuickActions();
         setupCampaigns();
-        setupBottomNav(); // ✅ ONLY CALL HERE
+        setupBottomNav();
     }
 
     private void bindViews() {
@@ -88,7 +88,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Analytics coming soon!", Toast.LENGTH_SHORT).show()
         );
 
-        // ✅ FIXED VIEW ALL
         tvViewAll.setOnClickListener(v ->
                 startActivity(new Intent(this, DiscoverActivity.class))
         );

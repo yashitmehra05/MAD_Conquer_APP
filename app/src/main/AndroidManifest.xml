@@ -12,8 +12,9 @@
         android:theme="@style/Theme.Conquer">
         <activity android:name=".MainActivity" android:exported="false"/>
         <activity android:name=".RegisterActivity" android:exported="false"/>
-
+        <activity android:name=".ProfileActivity" android:exported="false"/>
         <activity android:name=".MessagesActivity" />
+
 
         <!-- KEEP ONLY ONE HomeActivity -->
         <activity
