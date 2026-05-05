@@ -1,5 +1,6 @@
 package com.example.conquer_app;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,17 @@ public class InfluencerAdapter extends RecyclerView.Adapter<InfluencerAdapter.Vi
         holder.location.setText("📍 " + inf.getLocation());
         holder.category.setText(inf.getCategory());
         holder.followers.setText(inf.getFollowers());
+
+        // Click → open detail screen
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), InfluencerDetailActivity.class);
+            intent.putExtra("name",      inf.getName());
+            intent.putExtra("handle",    inf.getHandle());
+            intent.putExtra("location",  inf.getLocation());
+            intent.putExtra("category",  inf.getCategory());
+            intent.putExtra("followers", inf.getFollowers());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -61,10 +73,10 @@ public class InfluencerAdapter extends RecyclerView.Adapter<InfluencerAdapter.Vi
         TextView name, handle, location, category, followers;
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.tv_influencer_name);
-            handle = itemView.findViewById(R.id.tv_influencer_handle);
-            location = itemView.findViewById(R.id.tv_influencer_location);
-            category = itemView.findViewById(R.id.tv_category);
+            name      = itemView.findViewById(R.id.tv_influencer_name);
+            handle    = itemView.findViewById(R.id.tv_influencer_handle);
+            location  = itemView.findViewById(R.id.tv_influencer_location);
+            category  = itemView.findViewById(R.id.tv_category);
             followers = itemView.findViewById(R.id.tv_followers);
         }
     }

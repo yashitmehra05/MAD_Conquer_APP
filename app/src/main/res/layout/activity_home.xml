@@ -55,21 +55,13 @@
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
-                <!-- Avatar button -->
-                <com.google.android.material.button.MaterialButton
+                <ImageView
                     android:id="@+id/btnAvatar"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    app:icon="@drawable/ic_person"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconSize="22dp"
-                    app:iconTint="@color/text_white"
-                    app:backgroundTint="@color/purple_primary"
-                    app:cornerRadius="22dp"
-                    android:padding="0dp"/>
+                    android:src="@drawable/conquer_logo"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Conquer Logo"/>
             </LinearLayout>
 
             <!-- ── STATS ROW ── -->
@@ -79,7 +71,7 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp"
                 android:paddingBottom="28dp"
-                android:weightSum="3">
+                android:weightSum="2">
 
                 <!-- Campaigns -->
                 <LinearLayout
@@ -135,31 +127,7 @@
                         android:layout_marginTop="4dp"/>
                 </LinearLayout>
 
-                <!-- ROI -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card"
-                    android:orientation="vertical"
-                    android:padding="14dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ROI"
-                        android:textColor="@color/text_grey"
-                        android:textSize="11sp"/>
-                    <TextView
-                        android:id="@+id/tvRoi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.2x"
-                        android:textColor="@color/text_white"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="4dp"/>
-                </LinearLayout>
 
             </LinearLayout>
 

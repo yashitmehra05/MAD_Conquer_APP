@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,19 +10,13 @@
         android:label="Conquer"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Conquer">
-        <activity android:name=".MainActivity" android:exported="false"/>
-        <activity android:name=".RegisterActivity" android:exported="false"/>
-        <activity android:name=".ProfileActivity" android:exported="false"/>
-        <activity android:name=".MessagesActivity" />
-
-
-        <!-- KEEP ONLY ONE HomeActivity -->
+        android:theme="@style/Theme.Conquer"
+        tools:replace="android:allowBackup">
+        <activity android:name=".ChatActivity" />
         <activity
-            android:name=".HomeActivity"
-            android:theme="@style/Theme.Conquer"
-            android:exported="false"/>
-
+            android:name=".InfluencerDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -31,12 +26,38 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity" android:exported="false"/>
-        <activity android:name=".SignUpActivity" android:exported="false"/>
+        <activity android:name=".LoginActivity"     android:exported="false"/>
+        <activity android:name=".SignUpActivity"    android:exported="false"/>
+        <activity android:name=".MainActivity"      android:exported="false"/>
+        <activity android:name=".RegisterActivity"  android:exported="false"/>
+        <activity android:name=".DiscoverActivity"  android:exported="false"/>
 
         <activity
-            android:name=".DiscoverActivity"
-            android:theme="@style/Theme.Conquer" />
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
+
+        <activity
+            android:name=".MessagesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
+
+        <activity
+            android:name=".NewCampaignActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".CampaignDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Conquer"/>
 
     </application>
+
 </manifest>

@@ -2,14 +2,15 @@ package com.example.conquer_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.*;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -18,51 +19,60 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        ImageButton btnBack        = findViewById(R.id.btnBack);
+        ImageButton btnSettings    = findViewById(R.id.btnSettings);
+        View btnEditProfile        = findViewById(R.id.btnEditProfile);
+        LinearLayout itemAccountSettings = findViewById(R.id.itemAccountSettings);
+        LinearLayout itemPrivacy   = findViewById(R.id.itemPrivacy);
+        LinearLayout itemHelp      = findViewById(R.id.itemHelp);
+        LinearLayout itemLogOut    = findViewById(R.id.itemLogOut);
+        TextView tvName            = findViewById(R.id.tvProfileName);
+        TextView tvEmail           = findViewById(R.id.tvProfileEmail);
+
+        // Load brand name + email from Firebase
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        TextView tvProfileName = findViewById(R.id.tvProfileName);
-        TextView tvProfileEmail = findViewById(R.id.tvProfileEmail);
-        TextView tvInfoName = findViewById(R.id.tvInfoName);
-        TextView tvInfoEmail = findViewById(R.id.tvInfoEmail);
-
         if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String displayName = (name != null && !name.isEmpty()) ? name : email;
+            tvEmail.setText(user.getEmail());
 
-            tvProfileName.setText(displayName);
-            tvProfileEmail.setText(email);
-            tvInfoName.setText(displayName);
-            tvInfoEmail.setText(email);
+            FirebaseDatabase.getInstance()
+                    .getReference("users")
+                    .child(user.getUid())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            String brandName = snapshot.child("name").getValue(String.class);
+                            if (brandName == null) brandName = snapshot.child("brandName").getValue(String.class);
+                            tvName.setText(brandName != null ? brandName : "Your Brand");
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            tvName.setText("Your Brand");
+                        }
+                    });
         }
 
-        // Logout
-        Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        });
+        btnBack.setOnClickListener(v -> finish());
 
-        // Bottom Nav
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-        bottomNav.setSelectedItemId(R.id.nav_profile);
-        bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                startActivity(new Intent(this, HomeActivity.class));
-                return true;
-            }
-            if (id == R.id.nav_discover) {
-                startActivity(new Intent(this, DiscoverActivity.class));
-                return true;
-            }
-            if (id == R.id.nav_messages) {
-                startActivity(new Intent(this, MessagesActivity.class));
-                return true;
-            }
-            if (id == R.id.nav_profile) return true;
-            return false;
+        btnSettings.setOnClickListener(v ->
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show());
+
+        btnEditProfile.setOnClickListener(v ->
+                Toast.makeText(this, "Edit Profile", Toast.LENGTH_SHORT).show());
+
+        itemAccountSettings.setOnClickListener(v ->
+                Toast.makeText(this, "Account Settings", Toast.LENGTH_SHORT).show());
+
+        itemPrivacy.setOnClickListener(v ->
+                Toast.makeText(this, "Privacy & Security", Toast.LENGTH_SHORT).show());
+
+        itemHelp.setOnClickListener(v ->
+                Toast.makeText(this, "Help & Support", Toast.LENGTH_SHORT).show());
+
+        itemLogOut.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         });
     }
 }

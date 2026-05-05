@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         DatabaseReference ref = database.getReference("users").child(uid);
 
         Map<String, Object> user = new HashMap<>();
-        user.put("name", name);
+        user.put("brandName", name);
         user.put("email", email);
         user.put("uid", uid);
         user.put("createdAt", System.currentTimeMillis());
@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
         ref.setValue(user)
                 .addOnSuccessListener(unused -> {
                     Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, HomeActivity.class));
                     finish();
                 })
                 .addOnFailureListener(e ->

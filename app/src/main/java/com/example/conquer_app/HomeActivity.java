@@ -14,7 +14,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 public class HomeActivity extends AppCompatActivity {
 
     static class Campaign {
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private TextView tvUserName, tvCampaigns, tvInfluencers, tvRoi, tvViewAll;
+    private TextView tvUserName, tvCampaigns, tvInfluencers, tvViewAll;
     private LinearLayout actionFindInfluencers, actionNewCampaign, actionMessages, actionAnalytics;
     private LinearLayout campaignContainer;
     private BottomNavigationView bottomNav;
@@ -52,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         tvUserName = findViewById(R.id.tvUserName);
         tvCampaigns = findViewById(R.id.tvCampaigns);
         tvInfluencers = findViewById(R.id.tvInfluencers);
-        tvRoi = findViewById(R.id.tvRoi);
         tvViewAll = findViewById(R.id.tvViewAll);
 
         actionFindInfluencers = findViewById(R.id.actionFindInfluencers);
@@ -64,10 +64,43 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupStats() {
-        tvUserName.setText("Kartik Sharma");
+        // Fetch real user name from Firebase
+        com.google.firebase.auth.FirebaseUser user =
+                com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            com.google.firebase.database.FirebaseDatabase.getInstance()
+                    .getReference("users")
+                    .child(user.getUid())
+                    .get()
+                    .addOnSuccessListener(snapshot -> {
+                        String name = snapshot.child("name").getValue(String.class);
+                        if (name == null) name = snapshot.child("brandName").getValue(String.class);
+                        if (name != null && !name.isEmpty()) {
+                            tvUserName.setText(name);
+                        } else {
+                            tvUserName.setText("User");
+                        }
+                    })
+                    .addOnFailureListener(e -> tvUserName.setText("User"));
+
+        } else {
+            tvUserName.setText("User");
+        }
+
         tvCampaigns.setText("2");
-        tvInfluencers.setText("7");
-        tvRoi.setText("3.2x");
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance()
+                .getReference("collaboration_requests")
+                .orderByChild("brandUid").equalTo(uid)
+                .addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(com.google.firebase.database.DataSnapshot snapshot) {
+                        tvInfluencers.setText(String.valueOf(snapshot.getChildrenCount()));
+                    }
+                    @Override
+                    public void onCancelled(com.google.firebase.database.DatabaseError error) {}
+                });
     }
 
     private void setupQuickActions() {
@@ -94,48 +127,108 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupCampaigns() {
-        List<Campaign> campaigns = new ArrayList<>();
-        campaigns.add(new Campaign("Summer Collection 2026", 5, "₹50,000", "2 days ago"));
-        campaigns.add(new Campaign("Product Launch", 2, "₹35,500", "20 days ago"));
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase.getInstance()
+                .getReference("campaigns").child(uid)
+                .orderByChild("timestamp")
+                .addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(com.google.firebase.database.DataSnapshot snapshot) {
+                        campaignContainer.removeAllViews();
+                        int count = 0;
+                        // iterate in reverse so newest shows first
+                        java.util.List<com.google.firebase.database.DataSnapshot> list = new java.util.ArrayList<>();
+                        for (com.google.firebase.database.DataSnapshot ds : snapshot.getChildren()) {
+                            list.add(ds);
+                        }
+                        java.util.Collections.reverse(list);
 
-        for (Campaign c : campaigns) {
-            View card = LayoutInflater.from(this)
-                    .inflate(R.layout.item_campaign, campaignContainer, false);
+                        for (com.google.firebase.database.DataSnapshot ds : list) {
+                            String campaignId   = ds.getKey();
+                            String name         = ds.child("name").getValue(String.class);
+                            String budget       = ds.child("budget").getValue(String.class);
+                            String description  = ds.child("description").getValue(String.class);
+                            String deliverables = ds.child("deliverables").getValue(String.class);
+                            String startDate    = ds.child("startDate").getValue(String.class);
+                            String endDate      = ds.child("endDate").getValue(String.class);
+                            Long timestamp      = ds.child("timestamp").getValue(Long.class);
 
-            ((TextView) card.findViewById(R.id.tvCampaignName)).setText(c.name);
-            ((TextView) card.findViewById(R.id.tvInfluencerCount)).setText(c.influencerCount + " influencers");
-            ((TextView) card.findViewById(R.id.tvBudget)).setText(c.budget);
-            ((TextView) card.findViewById(R.id.tvTimeAgo)).setText(c.timeAgo);
+                            String timeAgo = getTimeAgo(timestamp);
 
-            card.setOnClickListener(v -> {
-                Intent intent = new Intent(this, CampaignDetailsActivity.class);
-                intent.putExtra("campaign_name", c.name);
-                startActivity(intent);
-            });
+                            android.view.View card = android.view.LayoutInflater.from(HomeActivity.this)
+                                    .inflate(R.layout.item_campaign, campaignContainer, false);
 
-            campaignContainer.addView(card);
-        }
+                            ((android.widget.TextView) card.findViewById(R.id.tvCampaignName)).setText(name);
+                            ((android.widget.TextView) card.findViewById(R.id.tvBudget)).setText(budget != null ? "₹" + budget : "N/A");
+                            ((android.widget.TextView) card.findViewById(R.id.tvTimeAgo)).setText(timeAgo);
+                            ((android.widget.TextView) card.findViewById(R.id.tvInfluencerCount)).setText("Active");
+
+                            String finalName        = name;
+                            String finalBudget      = budget;
+                            String finalDescription = description;
+                            String finalDeliverables= deliverables;
+                            String finalStartDate   = startDate;
+                            String finalEndDate     = endDate;
+
+                            card.setOnClickListener(v -> {
+                                Intent intent = new Intent(HomeActivity.this, CampaignDetailsActivity.class);
+                                intent.putExtra("campaign_title",       finalName);
+                                intent.putExtra("campaign_budget",      finalBudget);
+                                intent.putExtra("campaign_description", finalDescription);
+                                intent.putExtra("campaign_deliverables",finalDeliverables);
+                                intent.putExtra("campaign_duration",    finalStartDate + " – " + finalEndDate);
+                                startActivity(intent);
+                            });
+
+                            campaignContainer.addView(card);
+                            count++;
+                        }
+                        tvCampaigns.setText(String.valueOf(count));
+                    }
+
+                    @Override
+                    public void onCancelled(com.google.firebase.database.DatabaseError error) {
+                        Toast.makeText(HomeActivity.this,
+                                "Failed to load campaigns", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private String getTimeAgo(Long timestamp) {
+        if (timestamp == null) return "";
+        long diff = System.currentTimeMillis() - timestamp;
+        long days = diff / (1000 * 60 * 60 * 24);
+        if (days == 0) return "Today";
+        if (days == 1) return "1 day ago";
+        return days + " days ago";
     }
 
     private void setupBottomNav() {
         bottomNav = findViewById(R.id.bottomNav);
+
         bottomNav.setSelectedItemId(R.id.nav_home);
+
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
+
             if (id == R.id.nav_home) return true;
+
             if (id == R.id.nav_discover) {
-                Toast.makeText(this, "Discover tapped", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, DiscoverActivity.class));
                 return true;
             }
+
             if (id == R.id.nav_messages) {
                 startActivity(new Intent(this, MessagesActivity.class));
                 return true;
             }
+
             if (id == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             }
+
             return false;
         });
-    }}
+    }
+}

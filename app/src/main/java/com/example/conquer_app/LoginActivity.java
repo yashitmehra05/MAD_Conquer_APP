@@ -41,10 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Updated IDs to match activity_login.xml
-        emailInput    = findViewById(R.id.etEmail);
+        emailInput = findViewById(R.id.etEmail);
         passwordInput = findViewById(R.id.etPassword);
-        loginBtn      = findViewById(R.id.btnLogin);
-        signupBtn     = findViewById(R.id.tvSignUp);
+        loginBtn = findViewById(R.id.btnLogin);
+        signupBtn = findViewById(R.id.tvSignUp);
 
         // ── Email/Password login ──────────────────────
         if (loginBtn != null) {
@@ -113,14 +113,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
         finish();
     }
-
-    // ── Auto-skip login if already logged in ─────────
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() != null) goToHome();
-    }
 }
+
+

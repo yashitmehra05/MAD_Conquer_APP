@@ -5,22 +5,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.conquer_app.R;
 import com.example.conquer_app.models.MessageThread;
-
 import java.util.List;
 
 public class MessageThreadAdapter extends RecyclerView.Adapter<MessageThreadAdapter.ViewHolder> {
 
-    private List<MessageThread> threads;
+    public interface OnThreadClickListener {
+        void onClick(MessageThread thread);
+    }
 
-    public MessageThreadAdapter(List<MessageThread> threads) {
-        this.threads = threads;
+    private List<MessageThread> threads;
+    private OnThreadClickListener listener;
+
+    public MessageThreadAdapter(List<MessageThread> threads, OnThreadClickListener listener) {
+        this.threads  = threads;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,30 +40,21 @@ public class MessageThreadAdapter extends RecyclerView.Adapter<MessageThreadAdap
         holder.tvHandle.setText(thread.getHandle());
         holder.tvLastMessage.setText(thread.getLastMessage());
         holder.ivAvatar.setImageResource(thread.getAvatarResId());
-
-        holder.itemView.setOnClickListener(v ->
-                Toast.makeText(v.getContext(),
-                        "Opening chat with " + thread.getName(),
-                        Toast.LENGTH_SHORT).show()
-        );
+        holder.itemView.setOnClickListener(v -> listener.onClick(thread));
     }
 
     @Override
-    public int getItemCount() {
-        return threads.size();
-    }
+    public int getItemCount() { return threads.size(); }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivAvatar;
-        TextView tvName;
-        TextView tvHandle;
-        TextView tvLastMessage;
+        TextView tvName, tvHandle, tvLastMessage;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivAvatar = itemView.findViewById(R.id.ivAvatar);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvHandle = itemView.findViewById(R.id.tvHandle);
+            ivAvatar      = itemView.findViewById(R.id.ivAvatar);
+            tvName        = itemView.findViewById(R.id.tvName);
+            tvHandle      = itemView.findViewById(R.id.tvHandle);
             tvLastMessage = itemView.findViewById(R.id.tvLastMessage);
         }
     }
